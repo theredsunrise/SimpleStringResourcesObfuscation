@@ -1,0 +1,6 @@
+.idea
+.gradle
+keystore.jks
+keystore.properties
+**/build
+**/src/generated
