@@ -1,0 +1,4 @@
+<resources>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="fragment_slideshow_title">This is slideshow Fragment</string>
+</resources>

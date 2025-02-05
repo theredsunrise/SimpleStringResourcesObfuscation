@@ -1,0 +1,15 @@
+.idea
+*.iml
+.gradle
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+.DS_Store
+
+keystore.jks
+**/build
+**/src/generated
+
+
+
