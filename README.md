@@ -5,6 +5,9 @@ By obfuscating text, we mean that plain text will not be readable, so **we will 
 Static texts in the app can help **hackers** quickly find ways to crack the app or understand how it works. 
 For example, **searching for text in login dialogs when the wrong password is entered, or when looking for API keys**.
 This methodology **just slows the hacker down** from cracking the app, but does not stop them.
+
+### Functionality:
+
 The first step in encoding resource strings is to **clone the working source set for the `develop` build type** into 
 the release source set for the `obfuscate` build type. During the cloning of the `develop` source set into `obfuscate`, 
 all resource strings without the `skip="true"` parameter are **encrypted using a Gradle script kotlin function**. So obfuscating string resources is done by encrypting 
@@ -50,6 +53,7 @@ object Helper {
 ```
 
 ### Usage examples are as follows:
+
 - If we have a `Context`:
   ```kotlin  
   val text = inflater.context.decrypt(R.string.fragment_slideshow_title)
@@ -72,6 +76,7 @@ object Helper {
 <string skip="true" name="app_name">String Resources Obfuscation</string>
 ```
 ### Used features:
+
 - Gradle convention plugins in buildSrc and code for encrypting string resources
 - Native Android library with C++ code and communication via JNI for decrypting string resources
 
