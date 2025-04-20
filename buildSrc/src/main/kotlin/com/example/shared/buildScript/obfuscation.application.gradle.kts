@@ -1,5 +1,4 @@
 import com.android.build.gradle.api.AndroidSourceSet
-import com.example.shared.buildScript.buildConfigField
 import com.example.shared.buildScript.obfuscatedSourceSetRoot
 import com.example.shared.buildScript.sharedBuildScript
 import java.util.Properties
@@ -12,10 +11,6 @@ plugins {
 apply(from = sharedBuildScript())
 
 android {
-    defaultConfig {
-        buildConfigField("DEVELOP", false)
-    }
-
     signingConfigs {
         create("obfuscate") {
             val keystoreProperties: Properties by rootProject.extra
@@ -25,13 +20,11 @@ android {
             keyAlias = keystoreProperties["keyAlias"] as String
         }
     }
-
     buildTypes {
         create("develop") {
             isDefault = true
             initWith(getByName("debug"))
             signingConfig = signingConfigs.getByName("debug")
-            buildConfigField("DEVELOP", true)
         }
         create("obfuscate") {
             isDefault = false
@@ -44,15 +37,13 @@ android {
             )
         }
     }
-
     androidComponents {
         beforeVariants { variantBuilder ->
-            if(variantBuilder.buildType == "debug" || variantBuilder.buildType == "release") {
+            if (variantBuilder.buildType == "debug" || variantBuilder.buildType == "release") {
                 variantBuilder.enable = false
             }
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -60,7 +51,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
     sourceSets {
         named("obfuscate") {
             java.srcDirs(mutableSetOf("${obfuscatedSourceSetRoot()}/java"))
@@ -79,5 +69,5 @@ val generateObfuscatedSourcesTask: (NamedDomainObjectProvider<AndroidSourceSet>)
 generateObfuscatedSourcesTask(project.android.sourceSets.named("develop"))
 
 dependencies {
-    implementation(files("$rootDir/buildSrc/build/libs/sharedJar-1.0.jar"))
+    implementation(project(":nativelib"))
 }

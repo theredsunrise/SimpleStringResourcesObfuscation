@@ -26,21 +26,6 @@ kotlin {
 }
 
 version = "1.0"
-tasks {
-    val sharedJar = register<Jar>("sharedJar") {
-        dependsOn.addAll(listOf("compileJava", "compileKotlin", "processResources"))
-        archiveBaseName = "sharedJar"
-        version = "1.0"
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        from(sourceSets.main.get().output) {
-            exclude("**/buildScript")
-        }
-    }
-    jar {
-        dependsOn(sharedJar)
-    }
-}
-
 dependencies {
     implementation(libs.kotlin.android)
     implementation(libs.android.library)

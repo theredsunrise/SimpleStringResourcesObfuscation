@@ -10,4 +10,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="fragment_gallery_title">This is gallery Fragment</string>
     <string name="fragment_home_title">This is home Fragment</string>
+    <string name="snackbar_message">Replace with your own action</string>
+    <string name="snackbar_action">Action</string>
 </resources>

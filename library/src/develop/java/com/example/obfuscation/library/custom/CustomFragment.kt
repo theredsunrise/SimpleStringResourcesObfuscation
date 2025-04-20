@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.obfuscation.library.Helper
-import com.example.obfuscation.library.decrypt
 import kotlinx.coroutines.launch
+import com.example.nativelib.decrypt
 
 open class CustomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

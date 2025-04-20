@@ -3,8 +3,7 @@ package com.example.obfuscation.custom
 import android.content.Context
 import android.util.AttributeSet
 import androidx.core.view.forEach
-import com.example.obfuscation.Helper
-import com.example.obfuscation.decrypt
+import com.example.nativelib.decrypt
 import com.google.android.material.R
 import com.google.android.material.navigation.NavigationView
 

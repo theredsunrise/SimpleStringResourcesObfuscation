@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.nativelib.decrypt
 import com.example.obfuscation.library.R
 import com.example.obfuscation.library.custom.CustomFragment
 import com.example.obfuscation.library.custom.createViewModel
 import com.example.obfuscation.library.databinding.FragmentSlideshowBinding
-import com.example.obfuscation.library.decrypt
 
 class SlideshowFragment : CustomFragment() {
 

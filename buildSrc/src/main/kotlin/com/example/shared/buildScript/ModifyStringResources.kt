@@ -1,23 +1,24 @@
 package com.example.shared.buildScript
 
-import com.example.shared.Obfuscation
 import java.io.File
 
 object ModifyStringResources {
     fun encrypt(file: File) {
         var text = file.readText(charset = Charsets.UTF_8)
-        val escapedPattern = "(<string\\s+(skip=\"(.+)\"\\s+)?name=.+>)(.+?)(</string>)"
-        val regex = escapedPattern.toRegex()
+        val regex = Regex("""<string(?:\s+skip="(true|false)")?\s+name="([^"]+)">(.*?)</string>""")
         val result = regex.findAll(text).toList().reversed()
         if (result.isEmpty()) {
             return
         }
         result.filter {
-            it.groupValues[3].lowercase().let { value ->
-                value.isEmpty() || value == "false"
-            }
-        }.mapNotNull { it.groups[4] }.forEach {
-            text = text.replaceRange(it.range, Obfuscation.encrypt(it.value))
+            it.groups[1]?.value?.lowercase()?.let { value ->
+                value == "false"
+            } ?: true
+        }.map { it.groups }.forEach {
+            val id = it[2] ?: return
+            val content = it[3] ?: return
+            println("****** ${id.value}  ${content.value}")
+            text = text.replaceRange(content.range, Obfuscation.encrypt(id.value, content.value))
         }
         file.writeText(text, charset = Charsets.UTF_8)
     }

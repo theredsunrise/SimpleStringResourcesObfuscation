@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "SimpleStringResourcesObfuscation"
 include(":app")
 include(":library")
+include(":nativelib")

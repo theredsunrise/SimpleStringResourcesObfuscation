@@ -7,8 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.obfuscation.Helper
-import com.example.obfuscation.decrypt
+import com.example.nativelib.decrypt
 import kotlinx.coroutines.launch
 
 open class CustomFragment : Fragment() {
