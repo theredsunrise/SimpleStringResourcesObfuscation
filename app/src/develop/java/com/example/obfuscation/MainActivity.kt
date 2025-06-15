@@ -5,6 +5,7 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavGraph
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -32,13 +33,18 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
         binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view,  view.context.decrypt(R.string.snackbar_message), Snackbar.LENGTH_LONG)
+            Snackbar.make(
+                view,
+                view.context.decrypt(R.string.snackbar_message),
+                Snackbar.LENGTH_LONG
+            )
                 .setAction(view.context.decrypt(R.string.snackbar_action), null)
                 .setAnchorView(R.id.fab).show()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+        iterateDestinations(navController.graph)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -48,6 +54,17 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private fun iterateDestinations(navGraph: NavGraph) {
+        navGraph.forEach {
+            if(it is NavGraph) {
+                iterateDestinations(it)
+            }
+            else {
+                it.label = it.label?.toString()?.decrypt
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

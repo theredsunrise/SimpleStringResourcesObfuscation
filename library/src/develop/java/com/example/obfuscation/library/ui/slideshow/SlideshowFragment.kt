@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.nativelib.decrypt
 import com.example.obfuscation.library.R
-import com.example.obfuscation.library.custom.CustomFragment
 import com.example.obfuscation.library.custom.createViewModel
 import com.example.obfuscation.library.databinding.FragmentSlideshowBinding
 
-class SlideshowFragment : CustomFragment() {
+class SlideshowFragment : Fragment() {
 
     private var _binding: FragmentSlideshowBinding? = null
 

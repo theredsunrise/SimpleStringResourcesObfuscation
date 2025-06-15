@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.nativelib.decrypt
 import com.example.obfuscation.R
-import com.example.obfuscation.custom.CustomFragment
 import com.example.obfuscation.custom.createViewModelFactory
 import com.example.obfuscation.databinding.FragmentHomeBinding
 
-class HomeFragment : CustomFragment() {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
